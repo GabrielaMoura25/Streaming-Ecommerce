@@ -5,7 +5,7 @@ sequelize
   .authenticate()
   .then(() => {
     console.log('Connection established successfully')
-    server.listen(8080, () => {
+    server.listen(process.env.PORT || 8080, () => {
       console.log(`Server is running at http://localhost:${process.env.PORT}`);
     });
   })

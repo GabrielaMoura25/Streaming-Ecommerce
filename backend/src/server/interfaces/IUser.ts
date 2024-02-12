@@ -3,7 +3,7 @@ export interface IUser {
   name: string,
   cpf: string,
   phone: string,
-  gender?: string,
+  gender?: 'hc' | 'ht' | 'mc' | 'mt' | 'o',
   dueDate: string,
   email: string,
   password: string,
