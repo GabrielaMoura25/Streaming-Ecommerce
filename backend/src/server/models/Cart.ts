@@ -4,6 +4,7 @@ import { sequelize } from '../config/connection';
 import { ICard } from '../interfaces/ICard';
 
 import User from './User';
+import Streaming from './Streaming';
 
 class Card extends Model implements ICard {
   id!: string;
@@ -25,6 +26,14 @@ Card.init({
       key: 'id'
     }
   },
+  streamingId: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    references: {
+      model: Streaming,
+      key: 'id'
+    }
+  }
 }, {
   sequelize,
   tableName: 'cards',
@@ -33,6 +42,9 @@ Card.init({
 
 User.hasMany(Card, { foreignKey: 'clientId', as: 'users' });
 Card.belongsTo(User, { foreignKey: 'clientId' });
+
+Card.hasMany(Streaming, { foreignKey: 'streamingId', as: 'streamings' });
+Streaming.belongsTo(Card, { foreignKey: 'streamingId' });
 
 // sequelize.sync({ force: true }).then(() => {
 //   console.log('Synchronized card database');
