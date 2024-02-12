@@ -1,4 +1,4 @@
-import sequelize from './server/config/connection';
+import { sequelize } from './server/config/connection';
 import server from './server/Server';
 
 sequelize
