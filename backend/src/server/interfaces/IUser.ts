@@ -3,9 +3,9 @@ export interface IUser {
   name: string,
   cpf: string,
   phone: string,
-  gender?: 'hc' | 'ht' | 'mc' | 'mt' | 'o',
+  gender: 'hc' | 'ht' | 'mc' | 'mt' | 'o' | undefined,
   dueDate: string,
   email: string,
   password: string,
-  role: string,
+  role: 'admin' | 'user' | undefined,
 };
