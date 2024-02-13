@@ -1,0 +1,49 @@
+/* Estilo para o container principal */
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("./img/fundo-para-loguin.jpg");
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+.container {
+  background-color: transparent;
+  opacity: 0.57;
+  background-color: #1f5361;
+  max-width: 500px;
+  margin-top: 50px;
+  padding: center;
+  justify-content: center;
+  margin-top: 12%;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+}
+.email,
+.senha {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: small;
+  color: aliceblue;
+}
+
+input {
+  display: flexbox;
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  color: rgb(3, 29, 54);
+  border-radius: 10px;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  margin-top: 10px;
+}

@@ -1,11 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from "./views/Home"
+import LoginPage from './components/login/Loguin';
+import Home from './views/Home';
 
 function App() {
 
   return (
     <>
-      <Home/>
+    <Home/>
+    <LoginPage email={''} password={''} buttonLoguin={''}/>
     </>
   )
 }
