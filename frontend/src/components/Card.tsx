@@ -18,6 +18,7 @@ interface CardGenericProps {
           <Button variant="primary">{buttonText}</Button>
         </Card.Body>
       </Card>
+     
     );
   }
 
