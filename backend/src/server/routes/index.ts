@@ -1,9 +1,12 @@
 import { Router, Request, Response } from 'express';
-
-import userRoutes from './user.routes';
 import { StatusCodes } from 'http-status-codes';
 
+import authenticated from '../middlewares/authenticated';
+import userRoutes from './user.routes';
+
 const router: Router = Router();
+
+router.use('/login', authenticated);
 
 router.use('/user', userRoutes);
 

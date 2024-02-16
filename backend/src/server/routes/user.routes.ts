@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import validateToken from '../middlewares/validateToken';
+
 import {
   createUser,
   getAllUsers,
@@ -12,7 +14,7 @@ const router: Router = Router();
 router.route('/').post(createUser).get(getAllUsers);
 
 router.route('/:id')
-  .put(updateUserById)
-  .delete(deleteUserById);
+  .put(validateToken, updateUserById)
+  .delete(validateToken, deleteUserById);
 
 export default router;
