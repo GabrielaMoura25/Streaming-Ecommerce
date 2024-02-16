@@ -12,7 +12,6 @@ export const checkAdminRole = async (req: Request, res: Response, next: NextFunc
 
   try {
     const user = await User.findOne({ where: { id: userId } });
-    console.log("Middleware: ", user);
 
     if (!user) {
       return res.status(StatusCodes.NOT_FOUND).json({ message: 'User not found' });
