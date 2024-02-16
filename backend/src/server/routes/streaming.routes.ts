@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import { createStreaming, deleteStreamingById, getAllStreamings, updateStreamingById } from '../controllers/Streaming';
 
-import { checkAdminRole } from './../middleware/checkAdminRole';
+import { checkAdminRole } from '../middlewares/checkAdminRole';
 
 const router: Router = Router();
 
