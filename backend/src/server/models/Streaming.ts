@@ -53,7 +53,7 @@ Streaming.init({
 User.hasMany(Streaming, { foreignKey: 'userId', as: 'users' });
 Streaming.belongsTo(User, { foreignKey: 'userId' });
 
-// sequelize.sync({ force: true }).then(() => {
+// sequelize.sync().then(() => {
 //   console.log('Synchronized streaming database');
 // });
 
