@@ -18,7 +18,7 @@
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
     "indent": "off",
-    "linebreak-style": ["error", "windows"],
+    "linebreak-style": ["error", "auto"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"]
   }
