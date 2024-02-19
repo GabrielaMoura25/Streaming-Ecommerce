@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { CartSchema } from 'src/server/validations/validateCart';
-import { ICart } from 'src/server/interfaces/ICart';
-import Cart from 'src/server/models/Cart';
+import { CartSchema } from '../../validations/validateCart';
+import { ICart } from '../../interfaces/ICart';
+import Cart from '../../models/Cart';
 
 export const createCart = async (req: Request, res: Response) => {
   const dataCart: ICart = req.body;

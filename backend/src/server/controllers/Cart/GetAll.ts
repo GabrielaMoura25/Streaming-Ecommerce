@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { ICart } from 'src/server/interfaces/ICart';
-import Cart from 'src/server/models/Cart';
+import { ICart } from '../../interfaces/ICart';
+import Cart from '../../models/Cart';
 
 export const getAllCarts = async (_: Request, res: Response) => {
   try {
