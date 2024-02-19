@@ -8,6 +8,8 @@ import Streaming from '../../models/Streaming';
 
 export const createStreaming = async (req: Request, res: Response) => {
   const dataStreaming: IStreaming = req.body;
+  const image: Express.Multer.File | undefined = req.file;
+  dataStreaming.photo = image?.filename;
 
   if (!dataStreaming) {
     res.status(StatusCodes.BAD_REQUEST).json({
