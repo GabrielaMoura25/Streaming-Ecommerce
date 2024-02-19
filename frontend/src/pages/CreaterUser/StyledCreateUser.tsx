@@ -8,14 +8,18 @@ margin: 0 auto;
 margin-top: 3rem;
 padding: 20px;
 border: 1px solid #ccc;
-border-radius: 5px
+border-radius: 5px;
 background-color: #fff;
 color: #f5f5f5;
 	;
 `;
 
 export const StyledLink = styled.div`
-color: #f5f5f5
+color: #f5f5f5;
+transition: color 0.3s;
+&:hover {
+  color: #4d9bee;
+}
 `;
 
 export const Title = styled.h3`
@@ -49,4 +53,5 @@ export const SuccessAlert = styled.div`
 export const RegisterButton = styled(Button)`
   width: 100%;
   margin-top: 1rem;
+ 
 `;
