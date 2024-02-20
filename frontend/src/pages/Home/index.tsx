@@ -1,5 +1,5 @@
 import Carrossel from "../../components/Carrossel";
-import AllCards from "../../components/AllCards";
+import CardStreaming from "../../components/CardStreaming";
 import ImagePromotion from "../../components/ImagePromotion";
 
 function Home() {
@@ -7,7 +7,7 @@ function Home() {
 		<>
 			<Carrossel />
 			<ImagePromotion />
-			<AllCards />
+			<CardStreaming />
 		</>
 	);
 }
