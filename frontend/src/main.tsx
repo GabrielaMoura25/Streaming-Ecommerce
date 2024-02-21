@@ -6,6 +6,8 @@ import App from "./App.tsx";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
+import NotFound from './pages/NotFound';
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
 		<BrowserRouter>
@@ -13,6 +15,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route element={<App />}>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
+
+          <Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

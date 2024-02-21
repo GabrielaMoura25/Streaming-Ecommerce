@@ -1,11 +1,15 @@
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaCartShopping } from "react-icons/fa6";
+
+import logo from "../../assets/images/Streaming.png";
 
 export default function NavScrollExample() {
 	return (
 		<Navbar expand="lg" bg="primary" variant="dark">
 			<Container fluid>
-				<Navbar.Brand href="/">Ecommerce Streaming</Navbar.Brand>
+				<Navbar.Brand href="/">
+					<img style={{ maxWidth: "10rem" }} src={logo} alt="" />
+				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
 					<Nav
@@ -22,6 +26,9 @@ export default function NavScrollExample() {
 							style={{ maxHeight: "100px" }}
 							navbarScroll
 						>
+							<Nav.Link href="/">
+								<FaCartShopping />
+							</Nav.Link>
 							<Nav.Link href="/login">Login</Nav.Link>
 						</Nav>
 						<Form.Control
