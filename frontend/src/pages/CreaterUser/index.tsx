@@ -107,6 +107,7 @@ const CreateUser: React.FC = () => {
             onChange={(event: React.ChangeEvent<HTMLSelectElement>) => handleChange(event)}
             aria-label="Select gender"
           >
+            <option value="">Gênero</option>
             <option value="Homem Cis">Homem Cis</option>
             <option value="Homem Trans">Homem Trans</option>
             <option value="Mulher Cis">Mulher Cis</option>
