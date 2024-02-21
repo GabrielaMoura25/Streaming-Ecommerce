@@ -8,7 +8,7 @@ const storage: multer.StorageEngine = multer.diskStorage({
   filename: (_: any, file: Express.Multer.File, cb: MulterCallback) => {
     const { originalname }: FileName = file;
 
-    const sanitizedFileName = originalname.replace(/\s+/g, '-').toLowerCase();
+    const sanitizedFileName: string = originalname.replace(/\s+/g, '-').toLowerCase();
 
     const auxArray: string[] = sanitizedFileName.split('.');
     const extension: string = auxArray[1];
