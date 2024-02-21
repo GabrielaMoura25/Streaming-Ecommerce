@@ -4,7 +4,7 @@ type MulterCallback = (error: Error | null, destination: string) => void;
 type FileName = { originalname: string };
 
 const storage: multer.StorageEngine = multer.diskStorage({
-    destination: (_: any,__: any, cb: MulterCallback) => cb(null, '../images'),
+    destination: (_: any,__: any, cb: MulterCallback) => cb(null, './src/server/upload/images'),
     filename: (_: any, file: Express.Multer.File, cb: MulterCallback) => {
         const { originalname }: FileName = file;
 

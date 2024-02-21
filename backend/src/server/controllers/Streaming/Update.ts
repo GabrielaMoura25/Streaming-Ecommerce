@@ -14,12 +14,6 @@ export const updateStreamingById = async (req: Request, res: Response) => {
     const dataStreaming: IStreaming = req.body;
     const image: Express.Multer.File | undefined = req.file;
     dataStreaming.photo = image?.filename;
-    
-    // if (!image) {
-    //   return res.status(StatusCodes.BAD_REQUEST).json({
-    //     message: 'Image not provided'
-    //   });
-    // }
 
     if (!id) {
       return res.status(StatusCodes.BAD_REQUEST).json({

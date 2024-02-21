@@ -5,7 +5,7 @@ import path from 'path';
 
 export const downloadImage = async (req: Request, res: Response): Promise<void> => {
   const { fileName } = req.params;
-  const imagePath: string = path.join(__dirname, `../../images/${fileName}`);
+  const imagePath: string = path.join(__dirname, `../../upload/images/${fileName}`);
 
   try {
     await fs.access(imagePath);

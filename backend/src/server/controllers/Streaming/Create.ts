@@ -23,11 +23,11 @@ export const createStreaming = async (req: Request, res: Response) => {
 
     await Streaming.create(streamingValidated);
 
-    res.status(StatusCodes.CREATED).json(streamingValidated);
+    return res.status(StatusCodes.CREATED).json(streamingValidated);
   } catch (error: any) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       message: 'Error when creating a new streaming record',
-      validator: error.errors,
+      error: error.message,
     });
   }
 };
