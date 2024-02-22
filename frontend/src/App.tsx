@@ -1,13 +1,16 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from "./views/Home"
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Outlet } from "react-router-dom";
+import Navbar from './components/Navbar';
+import Footer from './components/Footer'
 
 function App() {
-
-  return (
-    <>
-      <Home/>
-    </>
-  )
+	return (
+		<>
+			<Navbar />
+      <Outlet />
+			<Footer/>
+		</>
+	);
 }
 
-export default App
+export default App;
