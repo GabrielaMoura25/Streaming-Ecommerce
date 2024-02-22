@@ -17,12 +17,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route element={<App />}>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
-<<<<<<< HEAD
 					<Route path="/user/register" element={<CreateUser/>} />
-=======
-					<Route path="/search-streaming" element={<Search />} />
-
->>>>>>> 2461a98877fc834ffbfaecacd3a65b6f8d467539
+					<Route path="/search-streaming" element={<Search id={""} title={""} description={""} value={0} photo={""} />} />
           <Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>

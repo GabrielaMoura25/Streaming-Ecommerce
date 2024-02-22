@@ -6,6 +6,7 @@ export const FooterContainer = styled.footer`
   background-color:  #333;
   padding: 3.5rem;
   text-align: center;
+  margin-top:3rem;
 `;
 
 export const StreamingEco = styled.div`
