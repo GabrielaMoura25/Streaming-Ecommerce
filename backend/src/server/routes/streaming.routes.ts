@@ -5,13 +5,16 @@ import {
   deleteStreamingById,
   getAllStreamings,
   updateStreamingById,
-  getPhotos
+  getPhotos,
+  getStreamingByName
 } from '../controllers/Streaming';
 
 import validateToken from '../middlewares/validateToken';
 import upload from '../utils/multerUpload';
 
 const router: Router = Router();
+
+router.route('/title').get(getStreamingByName);
 
 router.route('/photos/:photoName').get(getPhotos);
 
