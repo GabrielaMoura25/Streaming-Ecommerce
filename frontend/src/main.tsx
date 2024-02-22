@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreateUser from "./pages/CreateUser/index.tsx";
 
 import App from "./App.tsx";
 import Home from "./pages/Home";
@@ -15,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 				<Route element={<App />}>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
-
+					<Route path="/user/register" element={<CreateUser/>} />
           <Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>
