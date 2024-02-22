@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Spinner } from "react-bootstrap";
 
-import { StyledCards, ErrorAlert } from "./StyledAllCards";
-import {getCards} from '../../services/cardServices';
+import { StyledCards, ErrorAlert, StyledCard } from "./StyledAllCards";
+import { getCards } from "../../services/cardServices";
 import noImage from "../../assets/images/no-image.jpg";
 
 interface ICardStreaming {
@@ -55,7 +55,7 @@ const CardStreaming: React.FC<ICardStreaming> = () => {
 			)}
 
 			{streaming.map((card) => (
-				<Card
+				<StyledCard
 					key={card.id}
 					style={{ width: "18rem", margin: "3rem auto 1rem auto" }}
 				>
@@ -70,9 +70,11 @@ const CardStreaming: React.FC<ICardStreaming> = () => {
 					<Card.Body>
 						<Card.Title>{card.title}</Card.Title>
 						<Card.Text>{card.description}</Card.Text>
-						<Button variant="primary">Adicionar ao carrinho</Button>
+						<Button variant="primary" style={{ width: "100%" }}>
+							Adicionar ao carrinho
+						</Button>
 					</Card.Body>
-				</Card>
+				</StyledCard>
 			))}
 		</StyledCards>
 	);

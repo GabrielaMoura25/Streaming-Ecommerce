@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Card, Button, Spinner } from "react-bootstrap";
 
-import { StyledCards, ErrorAlert, Title } from "./styledSearch";
+import { StyledCards, ErrorAlert, Title, StyledCard } from "./styledSearch";
 import { getCardsTitle } from "../../services/cardServices";
 
 import noImage from "../../assets/images/no-image.jpg";
@@ -31,7 +31,7 @@ const Search: React.FC<ICardStreaming> = () => {
 				setLoading(false);
 			} catch (error: any) {
 				setErrorMessage(error.message);
-        setStreamings([]);
+				setStreamings([]);
 				setTimeout(() => {
 					setErrorMessage(null);
 				}, 2000);
@@ -66,7 +66,7 @@ const Search: React.FC<ICardStreaming> = () => {
 				)}
 
 				{streamings.map((card: any) => (
-					<Card
+					<StyledCard
 						key={card.id}
 						style={{ width: "18rem", margin: "3rem auto 1rem auto" }}
 					>
@@ -83,7 +83,7 @@ const Search: React.FC<ICardStreaming> = () => {
 							<Card.Text>{card.description}</Card.Text>
 							<Button variant="primary">Adicionar ao carrinho</Button>
 						</Card.Body>
-					</Card>
+					</StyledCard>
 				))}
 			</StyledCards>
 		</>
