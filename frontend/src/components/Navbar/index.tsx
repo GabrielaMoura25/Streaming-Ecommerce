@@ -1,9 +1,24 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import { FaMagnifyingGlass, FaCartShopping } from "react-icons/fa6";
 
 import logo from "../../assets/images/Streaming.png";
 
 export default function NavScrollExample() {
+	const [search, setSearch] = useState("");
+	const navigate = useNavigate();
+
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
+
+		if (!search) return;
+
+		navigate(`search-streaming?title=${search}`);
+		setSearch("");
+	};
+
 	return (
 		<Navbar expand="lg" bg="primary" variant="dark">
 			<Container fluid>
@@ -20,7 +35,7 @@ export default function NavScrollExample() {
 						<Nav.Link href="/user/register">Cadastra-se</Nav.Link>
 					</Nav>
 
-					<Form className="d-flex">
+					<Form className="d-flex" onSubmit={handleSubmit}>
 						<Nav
 							className="me-auto my-2 my-lg-0"
 							style={{ maxHeight: "100px" }}
@@ -36,8 +51,10 @@ export default function NavScrollExample() {
 							placeholder="Pesquisar"
 							className="me-2"
 							aria-label="Search"
+							onChange={(e) => setSearch(e.target.value)}
+							value={search}
 						/>
-						<Button variant="outline-light">
+						<Button variant="outline-light" type="submit">
 							<FaMagnifyingGlass />
 						</Button>
 					</Form>
