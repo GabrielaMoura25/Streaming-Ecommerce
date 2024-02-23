@@ -45,6 +45,7 @@ export default function NavScrollExample() {
 						navbarScroll
 					>
 						<Nav.Link href="/user/register">Cadastra-se</Nav.Link>
+						<Nav.Link href="/streaming/register">Adicionar produto</Nav.Link>
 					</Nav>
 
 					<Form className="d-flex" onSubmit={handleSubmit}>
