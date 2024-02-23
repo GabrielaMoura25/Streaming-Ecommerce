@@ -75,7 +75,7 @@ const CreateStreaming: React.FC = () => {
 				navigate("/");
 			}, 2000);
 
-			setSuccessMessage("Cliente cadastrado com sucesso!");
+			setSuccessMessage("Produto cadastrado com sucesso!");
 		} catch (error: any) {
 			setTimeout(() => {
 				setErrorMessage("");
