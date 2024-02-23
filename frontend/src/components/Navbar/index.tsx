@@ -19,6 +19,18 @@ export default function NavScrollExample() {
 		setSearch("");
 	};
 
+	const tokenExists = () => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			return true;
+		}
+	};
+
+	const logoutUser = () => {
+		localStorage.removeItem("token");
+		window.location.href = "/";
+	};
+
 	return (
 		<Navbar expand="lg" bg="primary" variant="dark">
 			<Container fluid>
@@ -41,10 +53,15 @@ export default function NavScrollExample() {
 							style={{ maxHeight: "100px" }}
 							navbarScroll
 						>
-							<Nav.Link href="/">
+							<Nav.Link href="/shopping-cart">
 								<FaCartShopping />
 							</Nav.Link>
-							<Nav.Link href="/login">Login</Nav.Link>
+
+							{tokenExists() ? (
+								<Nav.Link onClick={() => logoutUser()}>Logout</Nav.Link>
+							) : (
+								<Nav.Link href="/login">Login</Nav.Link>
+							)}
 						</Nav>
 						<Form.Control
 							type="search"

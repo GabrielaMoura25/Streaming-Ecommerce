@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Alert } from "react-bootstrap/";
+import { Alert, Card } from "react-bootstrap/";
 
 export const StyledCards = styled.div`
 	display: flex;
@@ -19,3 +19,13 @@ export const ErrorAlert = styled(Alert)`
 	background-color: #050505;
 	color: white;
 `;
+
+export const StyledCard = styled(Card)`
+	background-color: #f0f0f0;
+	border: 1px solid #bdbdbd;
+	transition: transform 0.3s ease;
+	&:hover {
+		transform: translateY(-6px);
+	}
+`;
+
