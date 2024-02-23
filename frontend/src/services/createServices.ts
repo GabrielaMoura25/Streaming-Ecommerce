@@ -10,9 +10,9 @@ interface ICreateUserForm {
   password: string;
 }
 
-export const CreateUserServices = async (data: ICreateUserForm | string| Date) => {
+export const CreateUserServices = async (data: ICreateUserForm | string) => {
   try {
-    const response = await api.post('http://localhost:8080/register', data);
+    const response = await api.post('http://localhost:8080/user', data);
     console.log(data);
     return response;
   } catch (error) {

@@ -16,7 +16,7 @@ interface ICardStreaming {
 const CardStreaming: React.FC<ICardStreaming> = () => {
 	const [streaming, setStreaming] = useState<ICardStreaming[]>([]);
 	const [loading, setLoading] = useState(true);
-	const [errorMessage, setErrorMessage] = useState("");
+	const [errorMessage, setErrorMessage] = useState(null);
 
 	useEffect(() => {
 		const fetchCards = async () => {
@@ -26,6 +26,9 @@ const CardStreaming: React.FC<ICardStreaming> = () => {
 				setLoading(false);
 			} catch (error: any) {
 				setErrorMessage(error.message);
+        setTimeout(() => {
+					setErrorMessage(null);
+				}, 2000);
 				setLoading(false);
 			}
 		};
@@ -46,7 +49,7 @@ const CardStreaming: React.FC<ICardStreaming> = () => {
 
 			{errorMessage && (
 				<ErrorAlert
-					style={{ textAlign: "center" }}
+					style={{ textAlign: "center", margin: "auto auto" }}
 					key="danger"
 					variant="danger"
 				>
