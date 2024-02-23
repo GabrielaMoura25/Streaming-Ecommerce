@@ -1,5 +1,6 @@
 import { api } from './api';
 
+
 export const getCards = async () => {
   try {
     const response = api.get('/streaming')

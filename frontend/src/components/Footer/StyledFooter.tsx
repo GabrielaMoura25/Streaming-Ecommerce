@@ -3,8 +3,9 @@ import styled from 'styled-components';
 export const FooterContainer = styled.footer`
   font-family: "Amiko", sans-serif;
   font-size:bold;
-  background-color:  #333;
+  background-color: #0d6efd;
   padding: 3.5rem;
+  margin-top:3rem;
   text-align: center;
   margin-top:3rem;
 `;

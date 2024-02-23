@@ -7,7 +7,6 @@ import App from "./App.tsx";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Search from './pages/Search';
-
 import NotFound from './pages/NotFound';
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -18,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/user/register" element={<CreateUser/>} />
+
 					<Route path="/search-streaming" element={<Search id={""} title={""} description={""} value={0} photo={""} />} />
           <Route path="*" element={<NotFound />} />
 				</Route>

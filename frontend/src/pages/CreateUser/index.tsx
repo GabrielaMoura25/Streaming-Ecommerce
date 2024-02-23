@@ -3,12 +3,14 @@ import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { StyledContainer, StyledLink, Title, Description, ErrorAlert, SuccessAlert } from './styledCreateUser'
+import { CreateUserServices } from '../../services/createServices';
+
 
 interface ICreateUserForm {
   name: string;
   cpf: string;
   phone: string;
-  gender: string|undefined,
+  gender: string;
   dueDate: Date;
   email: string;
   password: string;
@@ -19,7 +21,6 @@ const CreateUser: React.FC = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
   const [formData, setFormData] = useState<ICreateUserForm>({
     name: "",
     cpf: "",
@@ -32,13 +33,14 @@ const CreateUser: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("entrei aqui")
-    const { name, value } = e.target;
+    const { name , value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
+     
     }));
   };
-
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -46,7 +48,8 @@ const CreateUser: React.FC = () => {
       if (!formData.name || !formData.email || !formData.password) {
         throw new Error("Por favor, preencha todos os campos obrigatórios.");
       }
-
+     await CreateUserServices(formData);
+     console.log(CreateUserServices, "Aquiiiii")
       setTimeout(() => {
         setSuccessMessage("");
         navigate("/login");
