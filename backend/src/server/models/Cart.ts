@@ -1,7 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/connection';
+
 import User from './User'; 
 import Streaming from './Streaming'; 
+
 import { ICart } from '../interfaces/ICart';
 
 class Cart extends Model implements ICart {
@@ -52,5 +54,8 @@ Cart.init({
 User.hasMany(Cart, { foreignKey: 'userId' });
 Streaming.hasMany(Cart, { foreignKey: 'streamingId' });
 
+// sequelize.sync().then(() => {
+//   console.log('Synchronized streaming database');
+// });
 
 export default Cart;
