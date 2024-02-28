@@ -1,13 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Streaming TV</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="./public/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			::-webkit-scrollbar {
+				width: 12px;
+			}
+
+			::-webkit-scrollbar-track {
+				background: #0d1117;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background-color: #0d6efd;
+				border-radius: 10px;
+				border: 3px solid #0d1117;
+			}
+		</style>
+		<title>Streaming TV</title>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.tsx"></script>
+	</body>
 </html>
