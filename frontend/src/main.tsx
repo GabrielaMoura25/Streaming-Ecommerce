@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Search from './pages/Search';
 import NotFound from './pages/NotFound';
+import ShoppingCart from './pages/ShoppingCart';
 import CreateStreaming from './pages/CreateStreaming';
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 					<Route path="/login" element={<Login />} />
 					<Route path="/user/register" element={<CreateUser/>} />
 					<Route path="/streaming/register" element={<CreateStreaming/>} />
+					<Route path="/shopping-cart" element={<ShoppingCart/>} />
 
 					<Route path="/search-streaming" element={<Search id={""} title={""} description={""} value={0} photo={""} />} />
           <Route path="*" element={<NotFound />} />
