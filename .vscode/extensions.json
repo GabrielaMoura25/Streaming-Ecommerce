@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		"mikestead.dotenv",
+		"dbaeumer.vscode-eslint",
+		"orta.vscode-jest",
+		"esbenp.prettier-vscode",
+		"kvcvc.sequelize-snippets",
+		"alexcvzz.vscode-sqlite",
+		"ms-vscode.vscode-typescript-next",
+		"styled-components.vscode-styled-components"
+	]
+}
