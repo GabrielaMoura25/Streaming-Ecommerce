@@ -13,17 +13,7 @@ import {
 } from "./styledCreateUser";
 
 import { CreateUserServices } from "../../services/createServices";
-
-interface ICreateUserForm {
-	name: string;
-	cpf: string;
-	phone: string;
-	gender: string;
-	dueDate: Date;
-	email: string;
-	password: string;
-	role: string;
-}
+import { ICreateUserForm } from "../../Interfaces/ICreateUserForm";
 
 const CreateUser: React.FC = () => {
 	const navigate = useNavigate();

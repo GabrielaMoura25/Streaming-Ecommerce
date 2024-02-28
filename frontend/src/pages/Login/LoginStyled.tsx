@@ -37,11 +37,13 @@ export const StyledButton = styled(Button)`
 export const ErrorAlert = styled(Alert)`
 	background-color: #dc3545;
 	color: white;
+	text-align: center;
 `;
 
 export const SuccessAlert = styled(Alert)`
 	background-color: #30a14e;
 	color: white;
+	text-align: center;
 `;
 
 export const StyledLink = styled(Link)`

@@ -13,11 +13,7 @@ import {
 } from "./LoginStyled";
 
 import { login } from "../../services/loginService";
-
-interface ILoginForm {
-	email: string;
-	password: string;
-}
+import { ILoginForm } from "../../Interfaces/ILoginForm";
 
 const Login: React.FC = () => {
 	const navigate = useNavigate();
@@ -103,21 +99,13 @@ const Login: React.FC = () => {
 				</Description>
 
 				{errorMessage && (
-					<ErrorAlert
-						style={{ textAlign: "center" }}
-						key="danger"
-						variant="danger"
-					>
+					<ErrorAlert key="danger" variant="danger">
 						{errorMessage}
 					</ErrorAlert>
 				)}
 
 				{successMessage && (
-					<SuccessAlert
-						style={{ textAlign: "center" }}
-						key="success"
-						variant="success"
-					>
+					<SuccessAlert key="success" variant="success">
 						{successMessage}
 					</SuccessAlert>
 				)}

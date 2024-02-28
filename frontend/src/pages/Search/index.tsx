@@ -6,20 +6,13 @@ import { StyledCards, ErrorAlert, Title, StyledCard } from "./styledSearch";
 import { getCardsTitle } from "../../services/cardServices";
 
 import noImage from "../../assets/images/no-image.jpg";
+import { ICreateStreaming } from "../../Interfaces/ICreateStreaming";
 
-interface ICardStreaming {
-	id: string;
-	title: string;
-	description: string;
-	value: number;
-	photo: string;
-}
-
-const Search: React.FC<ICardStreaming> = () => {
+const Search: React.FC<ICreateStreaming> = () => {
 	const [searchParams] = useSearchParams();
 	const query = searchParams.get("title");
 
-	const [streamings, setStreamings] = useState<ICardStreaming[]>([]);
+	const [streamings, setStreamings] = useState<ICreateStreaming[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
 
@@ -56,20 +49,13 @@ const Search: React.FC<ICardStreaming> = () => {
 			<StyledCards>
 				{loading && BasicExample()}
 				{errorMessage && (
-					<ErrorAlert
-						style={{ textAlign: "center", margin: "auto auto" }}
-						key="danger"
-						variant="danger"
-					>
+					<ErrorAlert key="danger" variant="danger">
 						{errorMessage}
 					</ErrorAlert>
 				)}
 
 				{streamings.map((card: any) => (
-					<StyledCard
-						key={card.id}
-						style={{ width: "18rem", margin: "3rem auto 1rem auto" }}
-					>
+					<StyledCard key={card.id}>
 						{card.photo ? (
 							<Card.Img
 								variant="top"

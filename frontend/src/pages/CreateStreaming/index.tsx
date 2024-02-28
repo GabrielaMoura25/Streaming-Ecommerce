@@ -13,19 +13,8 @@ import {
 } from "./styledCreateUser";
 
 import { RegisterStreaming } from "../../services/createStreaming";
-
-interface ICreateStreaming {
-	title: string;
-	description: string;
-	value: string;
-	photo: File;
-	userId: string;
-}
-
-interface IDecodedToken {
-	id: string;
-	role: string;
-}
+import { ICreateStreaming } from '../../Interfaces/ICreateStreaming';
+import { IDecodedToken } from '../../Interfaces/IDecodedToken';
 
 const CreateStreaming: React.FC = () => {
 	const navigate = useNavigate();
@@ -146,10 +135,14 @@ const CreateStreaming: React.FC = () => {
 
 						<Form.Group className="mb-3" controlId="formBasicPhone">
 							<Form.Label>Valor</Form.Label>
-							<Form.Control type="text" name="value" onChange={handleChange} />
+							<Form.Control
+								type="text"
+								name="value"
+								onChange={handleChange}
+								placeholder="0,00"
+							/>
 						</Form.Group>
 
-						{/* campo para adicionar imagem */}
 						<Form.Group className="mb-3" controlId="formBasicPhone">
 							<Form.Label>Imagem de capa</Form.Label>
 							<Form.Control type="file" name="photo" onChange={handleChange} />
@@ -163,9 +156,17 @@ const CreateStreaming: React.FC = () => {
 							Cadastrar produto
 						</Button>
 
-						{errorMessage && <ErrorAlert>{errorMessage}</ErrorAlert>}
+						{errorMessage && (
+					<ErrorAlert key="danger" variant="danger">
+						{errorMessage}
+					</ErrorAlert>
+				)}
 
-						{successMessage && <SuccessAlert>{successMessage}</SuccessAlert>}
+				{successMessage && (
+					<SuccessAlert key="success" variant="success">
+						{successMessage}
+					</SuccessAlert>
+				)}
 					</Form>
 				</StyledContainer>
 			) : (
