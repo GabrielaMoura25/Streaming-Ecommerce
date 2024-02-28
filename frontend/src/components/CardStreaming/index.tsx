@@ -5,16 +5,10 @@ import { StyledCards, ErrorAlert, StyledCard } from "./StyledAllCards";
 import { getCards } from "../../services/cardServices";
 import noImage from "../../assets/images/no-image.jpg";
 
-interface ICardStreaming {
-	id: string;
-	title: string;
-	description: string;
-	value: number;
-	photo: string;
-}
+import { ICreateStreaming } from "../../Interfaces/ICreateStreaming";
 
-const CardStreaming: React.FC<ICardStreaming> = () => {
-	const [streaming, setStreaming] = useState<ICardStreaming[]>([]);
+const CardStreaming: React.FC<ICreateStreaming> = () => {
+	const [streaming, setStreaming] = useState<ICreateStreaming[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
 
@@ -26,7 +20,7 @@ const CardStreaming: React.FC<ICardStreaming> = () => {
 				setLoading(false);
 			} catch (error: any) {
 				setErrorMessage(error.message);
-        setTimeout(() => {
+				setTimeout(() => {
 					setErrorMessage(null);
 				}, 2000);
 				setLoading(false);
