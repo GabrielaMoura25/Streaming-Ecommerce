@@ -29,6 +29,7 @@ export default function NavScrollExample() {
 		}
 	};
 
+	// Quero que seja mostrado para qualquer user a opções de add streamings
 	// const verifiyUserAdmin = () => {
 	// 	const token = localStorage.getItem("token");
 	// 	if (token) {

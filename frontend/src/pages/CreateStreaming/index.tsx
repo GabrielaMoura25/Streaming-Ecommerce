@@ -13,8 +13,8 @@ import {
 } from "./styledCreateUser";
 
 import { RegisterStreaming } from "../../services/createStreaming";
-import { ICreateStreaming } from '../../Interfaces/ICreateStreaming';
-import { IDecodedToken } from '../../Interfaces/IDecodedToken';
+import { ICreateStreaming } from '../../interfaces/ICreateStreaming';
+import { IDecodedToken } from '../../interfaces/IDecodedToken';
 
 const CreateStreaming: React.FC = () => {
 	const navigate = useNavigate();

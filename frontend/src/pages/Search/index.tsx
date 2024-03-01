@@ -6,7 +6,7 @@ import { StyledCards, ErrorAlert, Title, StyledCard } from "./styledSearch";
 import { getCardsTitle } from "../../services/cardServices";
 
 import noImage from "../../assets/images/no-image.jpg";
-import { ICreateStreaming } from "../../Interfaces/ICreateStreaming";
+import { ICreateStreaming } from "../../interfaces/ICreateStreaming";
 
 const Search: React.FC<ICreateStreaming> = () => {
 	const [searchParams] = useSearchParams();

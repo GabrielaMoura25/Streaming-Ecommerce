@@ -13,7 +13,7 @@ import {
 } from "./LoginStyled";
 
 import { login } from "../../services/loginService";
-import { ILoginForm } from "../../Interfaces/ILoginForm";
+import { ILoginForm } from "../../interfaces/ILoginForm";
 
 const Login: React.FC = () => {
 	const navigate = useNavigate();

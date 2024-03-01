@@ -12,10 +12,11 @@ import {
 
 import { getCards } from "../../services/cardServices";
 import { postCarts } from "../../services/cartServices";
-import noImage from "../../assets/images/no-image.jpg";
 
 import { ICreateStreaming } from "../../interfaces/ICreateStreaming";
 import { IJwtPayload } from "../../interfaces/IJwtPayload";
+
+import noImage from "../../assets/images/no-image.jpg";
 
 const CardStreaming: React.FC<ICreateStreaming> = () => {
 	const [streaming, setStreaming] = useState<ICreateStreaming[]>([]);

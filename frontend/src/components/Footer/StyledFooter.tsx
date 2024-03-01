@@ -1,13 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
   font-family: "Amiko", sans-serif;
-  font-size:bold;
+  width: 100%;
   background-color: #0d6efd;
   padding: 3.5rem;
-  margin-top:3rem;
+  margin-top: 3rem;
   text-align: center;
-  margin-top:3rem;
+  bottom: 0;
 `;
 
 export const StreamingEco = styled.div`
@@ -16,6 +16,7 @@ export const StreamingEco = styled.div`
     font-size: 1.5em;
   }
 `;
+
 export const TeamInfo = styled.div`
   color: white;
   margin-top: 0.6rem;
@@ -23,13 +24,15 @@ export const TeamInfo = styled.div`
     margin: 0;
   }
 `;
+
 export const RepositoryLink = styled.a`
-  color:  white;
+  color: white;
   text-decoration: none;
   &:hover {
-  text-decoration: underline;
+    text-decoration: underline;
   }
 `;
+
 export const ResponsibleLink = styled.a`
   color: white;
   text-decoration: none;
