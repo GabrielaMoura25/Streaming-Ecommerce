@@ -10,12 +10,11 @@ import stripePayments from '../controllers/Stripe';
 
 const router: Router = Router();
 
-router.route('/payment').post(stripePayments);
+router.post('/payment', stripePayments);
+router.get('/', getAllCarts);
+router.post('/', createCart);
+router.put('/:id', updateCartById);
+router.delete('/:id', deleteCartById);
 
-router.route('/').post(createCart).get(getAllCarts);
-
-router.route('/:id')
-  .put(updateCartById)
-  .delete(deleteCartById);
 
 export default router;

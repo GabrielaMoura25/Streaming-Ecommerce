@@ -7,6 +7,8 @@ import Cart from '../../models/Cart';
 export const createCart = async (req: Request, res: Response) => {
   const dataCart: ICart = req.body;
 
+  console.log(dataCart);
+
   if (!dataCart) {
     res.status(StatusCodes.BAD_REQUEST).json({
       message: 'Data not found'

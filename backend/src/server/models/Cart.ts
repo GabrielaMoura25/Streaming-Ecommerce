@@ -1,11 +1,10 @@
 import { DataTypes, Model } from 'sequelize';
+
 import { sequelize } from '../config/connection';
-
-import User from './User'; 
-import Streaming from './Streaming'; 
-
 import { ICart } from '../interfaces/ICart';
 
+import User from './User';
+import Streaming from './Streaming';
 class Cart extends Model implements ICart {
   id!: string;
   userId!: string;
@@ -24,17 +23,17 @@ Cart.init({
     type: DataTypes.UUID,
     allowNull: false,
     references: {
-      model: User, 
-      key: 'id',
-    },
+      model: User,
+      key: 'id'
+    }
   },
   streamingId: {
     type: DataTypes.UUID,
     allowNull: false,
     references: {
-      model: Streaming, 
-      key: 'id',
-    },
+      model: Streaming,
+      key: 'id'
+    }
   },
   quantity: {
     type: DataTypes.INTEGER,
@@ -47,15 +46,18 @@ Cart.init({
   } 
 }, {
   sequelize,
-  tableName: 'cart',
+  tableName: 'carts',
   modelName: 'Cart'
-});
+}); 
 
-User.hasMany(Cart, { foreignKey: 'userId' });
-Streaming.hasMany(Cart, { foreignKey: 'streamingId' });
+User.hasMany(Cart, { foreignKey: 'userId', as: 'carts' });
+Cart.belongsTo(User, { foreignKey: 'userId' });
+
+Cart.hasMany(Streaming, { foreignKey: 'streamingId', as: 'streamings' });
+Streaming.belongsTo(Cart, { foreignKey: 'streamingId' });
 
 // sequelize.sync().then(() => {
-//   console.log('Synchronized streaming database');
+//   console.log('Synchronized cart database');
 // });
 
 export default Cart;
