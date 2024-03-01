@@ -11,8 +11,21 @@ export const StyledCards = styled.div`
 `;
 
 export const ErrorAlert = styled(Alert)`
-	background-color: #050505;
+	background-color: #e41749;
+	position: fixed;
+	z-index: 9999;
 	color: white;
+	right: 2rem;
+	top: 2rem;
+`;
+
+export const SuccessAlert = styled(Alert)`
+	background-color: #30a14e;
+	position: fixed;
+	z-index: 9999;
+	color: white;
+	right: 2rem;
+	top: 2rem;
 `;
 
 export const StyledCard = styled(Card)`
