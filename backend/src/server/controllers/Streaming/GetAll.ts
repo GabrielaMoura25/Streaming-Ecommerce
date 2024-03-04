@@ -3,10 +3,15 @@ import { StatusCodes } from 'http-status-codes';
 
 import { IStreaming } from '../../interfaces/IStreaming';
 import Streaming from '../../models/Streaming';
+import User from '../../models/User';
 
 export const getAllStreamings = async (_: Request, res: Response) => {
   try {
-    const streamings: IStreaming[] = await Streaming.findAll();
+    const streamings: IStreaming[] = await Streaming.findAll({
+      include: {
+        model: User
+      }
+    });
 
     if (!streamings || streamings.length <= 0) {
       res.status(StatusCodes.NOT_FOUND).json({

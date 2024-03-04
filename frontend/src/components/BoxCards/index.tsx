@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap/";
+import { jwtDecode } from "jwt-decode";
 
 import { getAllCarts } from "../../services/cartServices";
 import { ICart } from "../../interfaces/ICart";
 
 import { StyledContainer } from "./BoxStyled";
+import { IDecodedToken } from "../../interfaces/IDecodedToken";
 
 const BoxCards = () => {
   const [streamings, setStreamings] = useState<ICart[]>([]);
@@ -12,8 +14,17 @@ const BoxCards = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getAllCarts();
+        const token: string | null = await localStorage.getItem("token");
+        
+        if(token) {
+          const decodedToken: IDecodedToken = await jwtDecode(token);
+
+        const response = await getAllCarts(decodedToken.id);
+        console.log(response.data);
         setStreamings(response.data);
+        } else {
+          throw new Error('Token inválido!');
+        }
       } catch (error: any) {
         console.log("Erro ao buscar streamings do carrinho: ", error);
       }

@@ -53,7 +53,7 @@ Cart.init({
 User.hasMany(Cart, { foreignKey: 'userId', as: 'carts' });
 Cart.belongsTo(User, { foreignKey: 'userId' });
 
-Cart.hasMany(Streaming, { foreignKey: 'streamingId', as: 'streamings' });
+Cart.hasMany(Streaming, { foreignKey: 'streamingId', as: 'carts' });
 Streaming.belongsTo(Cart, { foreignKey: 'streamingId' });
 
 // sequelize.sync().then(() => {

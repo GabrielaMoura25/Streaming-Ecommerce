@@ -10,9 +10,9 @@ export const postCarts = async (dataCart: ICreateStreaming) => {
     throw new Error('Erro ao buscar os cards');
   }
 };
-export const getAllCarts = async () => {
+export const getAllCarts = async (idUser: string) => {
   try {
-    const response = api.get('/cart');
+    const response = api.get(`/cart/${idUser}`);
     return response;
   } catch (error) {
     throw new Error('Erro ao buscar os cards');

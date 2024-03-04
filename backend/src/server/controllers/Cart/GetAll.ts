@@ -3,29 +3,39 @@ import { StatusCodes } from 'http-status-codes';
 
 import Cart from '../../models/Cart';
 import User from '../../models/User';
+import Streaming from '../../models/Streaming';
 
 import { ICart } from '../../interfaces/ICart';
 import { IUser } from '../../interfaces/IUser';
 
 export const getAllCarts = async (req: Request, res: Response) => {
   try {
-    // const userId = req.params;
+    const { id } = req.params;
 
-    // if (!userId) {
-    //   return res.status(StatusCodes.BAD_REQUEST).json({
-    //     message: 'User ID is required',
-    //   });
-    // }
+    console.log(id);
 
-    // const userExists: IUser | null = await User.findOne(userId);
+    if (!id) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        message: 'User ID is required',
+      });
+    }
 
-    // if (!userExists) {
-    //   return res.status(StatusCodes.NOT_FOUND).json({
-    //     message: 'User not found',
-    //   });
-    // }
+    const userExists: IUser | null = await User.findByPk(id);
 
-    const carts: ICart[] = await Cart.findAll();
+    if (!userExists) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        message: 'User not found',
+      });
+    }
+
+    const carts: ICart[] = await Cart.findAll({
+      where: {
+        userId: id,
+      },
+      include: {
+        model: User
+      },
+    });
 
     console.log(carts);
 
