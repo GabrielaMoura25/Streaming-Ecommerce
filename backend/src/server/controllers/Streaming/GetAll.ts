@@ -14,9 +14,7 @@ export const getAllStreamings = async (req: Request, res: Response) => {
     const streamings: IStreaming[] = await Streaming.findAll({
       limit,
       offset,
-      include: {
-        model: User,
-      },
+      include: User
     });
 
     if (!streamings || streamings.length <= 0) {

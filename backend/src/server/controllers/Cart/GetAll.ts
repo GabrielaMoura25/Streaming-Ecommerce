@@ -10,17 +10,15 @@ import { IUser } from '../../interfaces/IUser';
 
 export const getAllCarts = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { userId } = req.params;
 
-    console.log(id);
-
-    if (!id) {
+    if (!userId) {
       return res.status(StatusCodes.BAD_REQUEST).json({
         message: 'User ID is required',
       });
     }
 
-    const userExists: IUser | null = await User.findByPk(id);
+    const userExists: IUser | null = await User.findByPk(userId);
 
     if (!userExists) {
       return res.status(StatusCodes.NOT_FOUND).json({
@@ -30,10 +28,10 @@ export const getAllCarts = async (req: Request, res: Response) => {
 
     const carts: ICart[] = await Cart.findAll({
       where: {
-        userId: id,
+        userId,
       },
       include: {
-        model: User
+        model: User,
       },
     });
 

@@ -11,7 +11,7 @@ import stripePayments from '../controllers/Stripe';
 const router: Router = Router();
 
 router.post('/payment', stripePayments);
-router.get('/:id', getAllCarts);
+router.get('/:userId', getAllCarts);
 router.post('/', createCart);
 router.put('/:id', updateCartById);
 router.delete('/:id', deleteCartById);

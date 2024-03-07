@@ -50,11 +50,11 @@ Cart.init({
   modelName: 'Cart'
 }); 
 
-User.hasMany(Cart, { foreignKey: 'userId', as: 'carts' });
+User.hasOne(Cart, { foreignKey: 'userId', as: 'user' });
 Cart.belongsTo(User, { foreignKey: 'userId' });
 
-Cart.hasMany(Streaming, { foreignKey: 'streamingId', as: 'carts' });
-Streaming.belongsTo(Cart, { foreignKey: 'streamingId' });
+Cart.hasMany(Streaming, { foreignKey: 'cartId', as: 'streamings' });
+Streaming.belongsTo(Cart, { foreignKey: 'cartId' });
 
 // sequelize.sync().then(() => {
 //   console.log('Synchronized cart database');

@@ -143,16 +143,15 @@ const CardStreaming: React.FC<ICreateStreaming> = () => {
             </Card.Body>
           </StyledCard>
         ))}
-
-        {info && (
-          <Pagination
-            limit={limit}
-            total={info}
-            offset={offSet}
-            setOffSet={setOffSet}
-          />
-        )}
       </StyledCards>
+      {info && (
+        <Pagination
+          limit={limit}
+          total={info}
+          offset={offSet}
+          setOffSet={setOffSet}
+        />
+      )}
     </>
   );
 };
