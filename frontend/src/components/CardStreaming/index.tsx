@@ -79,6 +79,8 @@ const CardStreaming: React.FC<ICreateStreaming> = () => {
       const data: any = {
         streamingId: dataStreaming.id,
         userId,
+        title: dataStreaming.title,
+        description: dataStreaming.description,
         quantity: 1,
         price: dataStreaming.value,
       };
@@ -132,6 +134,7 @@ const CardStreaming: React.FC<ICreateStreaming> = () => {
             )}
             <Card.Body>
               <Card.Title>{card.title}</Card.Title>
+              <Card.Title>R$ {card.value}</Card.Title>
               <Card.Text>{card.description}</Card.Text>
               <Button
                 variant="primary"

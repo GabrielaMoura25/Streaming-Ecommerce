@@ -1,11 +1,18 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import { useNavigate, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { jwtDecode } from "jwt-decode";
 
 import { ErrorAlert, SuccessAlert, StyledForm } from "./PaymentStyled";
 
+import { getAllCarts } from "../../services/cartServices";
 import { paymentService } from "../../services/paymentService";
+
+import { ICart } from "../../interfaces/ICart";
+import { IDecodedToken } from "../../interfaces/IDecodedToken";
+
+import BoxCards from "../BoxCards";
 
 import "./cardElement.css";
 
@@ -14,9 +21,58 @@ const PaymentForm = () => {
 
   const stripe = useStripe();
   const elements = useElements();
+
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+  const [streamings, setStreamings] = useState<ICart[]>([]);
+  const [amount, setAmount] = useState("");
+
+  const TotalValueWithoutPoint = amount.toString().replace('.', '');
+  const TotalValueInCents: number = Number(TotalValueWithoutPoint);
+
+  console.log(TotalValueInCents);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token: string | null = await localStorage.getItem("token");
+
+        if (token) {
+          const decodedToken: IDecodedToken = await jwtDecode(token);
+
+          const response = await getAllCarts(decodedToken.id);
+          console.log(response.data);
+          setStreamings(response.data);
+        } else {
+          throw new Error("Token inválido!");
+        }
+      } catch (error: any) {
+        console.log("Erro ao buscar streamings do carrinho: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const totalSum = () => {
+      let sum = 0;
+
+      for (let i = 0; i < streamings.length; i++) {
+        sum = sum + streamings[i].price;
+        console.log(sum);
+      }
+
+      const convertToNumber = Number(sum);
+      const roundedValue = convertToNumber.toFixed(2);
+      setAmount(roundedValue);
+      return;
+    };
+
+    totalSum();
+  }, [streamings]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -44,7 +100,7 @@ const PaymentForm = () => {
 
     try {
       await paymentService({
-        amount: 2000,
+        amount: TotalValueInCents,
         token: paymentMethod,
       });
 
@@ -63,45 +119,50 @@ const PaymentForm = () => {
       setLoading(false);
     }
   };
+
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <h3 style={{ textAlign: "center" }}>Finalizar compras</h3>
-      <div style={{ height: "5rem", margin: "2rem auto" }}>
-        <p>Quantidade de Itens: 4</p>
-        <h3>Valor total: R$ 220.20</h3>
-      </div>
+    <>
+      <BoxCards streamings={streamings} setStreamings={setStreamings} />
 
-      <CardElement className="card-element" />
-      <Button
-        style={{ marginTop: "1rem", width: "100%" }}
-        variant="primary"
-        type="submit"
-        disabled={!stripe || loading}
-      >
-        {loading ? "Processando..." : "Finalizar Compra"}
-      </Button>
+      <StyledForm onSubmit={handleSubmit}>
+        <h3 style={{ textAlign: "center" }}>Finalizar compras</h3>
+        <div style={{ height: "5rem", margin: "2rem auto" }}>
+          <p>Quantidade de itens: {streamings.length}</p>
+          <h2>R$ {amount}</h2>
+        </div>
 
-      <Link to={"/"}>
+        <CardElement className="card-element" />
         <Button
-          style={{ margin: "1rem auto 2rem auto", width: "100%" }}
-          variant="outline-danger"
+          style={{ marginTop: "1rem", width: "100%" }}
+          variant="primary"
+          type="submit"
+          disabled={!stripe || loading}
         >
-          Cancelar
+          {loading ? "Processando..." : "Finalizar Compra"}
         </Button>
-      </Link>
 
-      {errorMessage && (
-        <ErrorAlert key="danger" variant="danger">
-          {errorMessage}
-        </ErrorAlert>
-      )}
+        <Link to={"/"}>
+          <Button
+            style={{ margin: "1rem auto 2rem auto", width: "100%" }}
+            variant="outline-danger"
+          >
+            Cancelar
+          </Button>
+        </Link>
 
-      {successMessage && (
-        <SuccessAlert key="success" variant="success">
-          {successMessage}
-        </SuccessAlert>
-      )}
-    </StyledForm>
+        {errorMessage && (
+          <ErrorAlert key="danger" variant="danger">
+            {errorMessage}
+          </ErrorAlert>
+        )}
+
+        {successMessage && (
+          <SuccessAlert key="success" variant="success">
+            {successMessage}
+          </SuccessAlert>
+        )}
+      </StyledForm>
+    </>
   );
 };
 export default PaymentForm;

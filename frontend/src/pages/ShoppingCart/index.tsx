@@ -4,7 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { BiSolidError } from "react-icons/bi";
 
 import PaymentForm from "../../components/BoxPayment";
-import BoxCards from "../../components/BoxCards";
+
 
 import {
   Container,
@@ -31,7 +31,7 @@ export default function ShoppingCart() {
     <>
       {verifyToken() ? (
         <Container>
-          <BoxCards />
+
           <Elements stripe={stripePromise}>
             <PaymentForm />
           </Elements>

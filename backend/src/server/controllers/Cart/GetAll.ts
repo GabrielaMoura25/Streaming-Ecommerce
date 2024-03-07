@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import Cart from '../../models/Cart';
 import User from '../../models/User';
-import Streaming from '../../models/Streaming';
+// import Streaming from '../../models/Streaming';
 
 import { ICart } from '../../interfaces/ICart';
 import { IUser } from '../../interfaces/IUser';
@@ -31,7 +31,7 @@ export const getAllCarts = async (req: Request, res: Response) => {
         userId,
       },
       include: {
-        model: User,
+        model: User
       },
     });
 

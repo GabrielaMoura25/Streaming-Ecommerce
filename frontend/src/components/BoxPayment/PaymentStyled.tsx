@@ -3,7 +3,7 @@ import { Alert, Form } from "react-bootstrap";
 
 export const StyledForm = styled(Form)`
   min-height: 30rem;
-  max-width: 20rem;
+  min-width: 22rem;
   margin: 2rem;
   background-color: #212529;
   padding: 1rem;

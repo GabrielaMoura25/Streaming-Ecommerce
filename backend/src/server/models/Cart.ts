@@ -9,8 +9,10 @@ class Cart extends Model implements ICart {
   id!: string;
   userId!: string;
   streamingId!: string;
-  quantity!: number;
-  price!: number;
+  title?: string;
+  description?: string;
+  quantity?: number;
+  price?: number;
 }
 
 Cart.init({
@@ -35,14 +37,22 @@ Cart.init({
       key: 'id'
     }
   },
+  title: {
+    type: DataTypes.STRING,
+    allowNull: true
+  }, 
+  description: {
+    type: DataTypes.STRING,
+    allowNull: true
+  }, 
   quantity: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
     defaultValue: 1,
   },
   price: {
     type: DataTypes.DECIMAL(10, 2), 
-    allowNull: false,
+    allowNull: true,
   } 
 }, {
   sequelize,

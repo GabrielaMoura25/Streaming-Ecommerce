@@ -1,50 +1,44 @@
-import { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap/";
-import { jwtDecode } from "jwt-decode";
 
-import { getAllCarts } from "../../services/cartServices";
 import { ICart } from "../../interfaces/ICart";
 
 import { StyledContainer } from "./BoxStyled";
-import { IDecodedToken } from "../../interfaces/IDecodedToken";
 
-const BoxCards = () => {
-  const [streamings, setStreamings] = useState<ICart[]>([]);
+import { removerCart } from "../../services/cartServices";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token: string | null = await localStorage.getItem("token");
-        
-        if(token) {
-          const decodedToken: IDecodedToken = await jwtDecode(token);
+interface Props {
+  streamings: ICart[];
+  setStreamings: React.Dispatch<React.SetStateAction<ICart[]>>;
+}
 
-        const response = await getAllCarts(decodedToken.id);
-        console.log(response.data);
-        setStreamings(response.data);
-        } else {
-          throw new Error('Token inválido!');
-        }
-      } catch (error: any) {
-        console.log("Erro ao buscar streamings do carrinho: ", error);
-      }
-    };
+const BoxCards: React.FC<Props> = ({ streamings, setStreamings }) => {
+  const removerItem = async (idStreaming: any) => {
+    try {
+      await removerCart(idStreaming);
 
-    fetchData();
-  }, []);
+      setStreamings((prevStreamings) =>
+        prevStreamings.filter((streaming) => streaming.id !== idStreaming)
+      );
+    } catch (error) {
+      console.log("Erro ao remover streaming do carrinho", error);
+    }
+  };
 
   return (
     <StyledContainer>
       {streamings.map((streaming) => (
         <Card style={{ marginBottom: "1rem" }} className="card text-bg-dark">
-          <Card.Header>{streaming.streamingId}</Card.Header>
+          <Card.Header>{streaming.title}</Card.Header>
           <Card.Body>
-            <Card.Title>Special title treatment</Card.Title>
-            <Card.Text>
-              With supporting text below as a natural lead-in to additional
-              content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            <Card.Title>Valor: R$ {streaming.price}</Card.Title>
+            <Card.Text>{streaming.description}</Card.Text>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => removerItem(streaming.id)}
+            >
+              Remover item
+            </Button>
           </Card.Body>
         </Card>
       ))}
