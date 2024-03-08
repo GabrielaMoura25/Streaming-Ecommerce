@@ -1,4 +1,4 @@
-export interface ICreateUserForm {
+export interface IUser {
   name: string;
   cpf: string;
   phone: string;

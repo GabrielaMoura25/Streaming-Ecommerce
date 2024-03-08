@@ -1,18 +1,18 @@
-import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Card, Button, Spinner } from "react-bootstrap";
 
-import { StyledCards, ErrorAlert, Title, StyledCard } from "./styledSearch";
+import { ContainerStyles, ErrorAlert, TitleStyles, CardStyles } from "./SearchStyled";
 import { getCardsTitle } from "../../services/cardServices";
+import { IStreaming } from "../../interfaces/IStreaming";
 
 import noImage from "../../assets/images/no-image.jpg";
-import { ICreateStreaming } from "../../interfaces/ICreateStreaming";
 
-const Search: React.FC<ICreateStreaming> = () => {
+const Search: React.FC<IStreaming> = () => {
 	const [searchParams] = useSearchParams();
 	const query = searchParams.get("title");
 
-	const [streamings, setStreamings] = useState<ICreateStreaming[]>([]);
+	const [streamings, setStreamings] = useState<IStreaming[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
 
@@ -45,8 +45,8 @@ const Search: React.FC<ICreateStreaming> = () => {
 
 	return (
 		<>
-			<Title>Resultado para: {query}</Title>
-			<StyledCards>
+			<TitleStyles>Resultado para: {query}</TitleStyles>
+			<ContainerStyles>
 				{loading && BasicExample()}
 				{errorMessage && (
 					<ErrorAlert key="danger" variant="danger">
@@ -55,7 +55,7 @@ const Search: React.FC<ICreateStreaming> = () => {
 				)}
 
 				{streamings.map((card: any) => (
-					<StyledCard key={card.id}>
+					<CardStyles key={card.id}>
 						{card.photo ? (
 							<Card.Img
 								variant="top"
@@ -66,12 +66,13 @@ const Search: React.FC<ICreateStreaming> = () => {
 						)}
 						<Card.Body>
 							<Card.Title>{card.title}</Card.Title>
+							<Card.Title>R$ {card.value}</Card.Title>
 							<Card.Text>{card.description}</Card.Text>
-							<Button variant="primary">Adicionar ao carrinho</Button>
+							<Button style={{ width: '100%'}} variant="primary">Adicionar ao carrinho</Button>
 						</Card.Body>
-					</StyledCard>
+					</CardStyles>
 				))}
-			</StyledCards>
+			</ContainerStyles>
 		</>
 	);
 };

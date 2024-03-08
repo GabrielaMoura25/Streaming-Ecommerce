@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { Alert, Card } from "react-bootstrap/";
 
-export const StyledCards = styled.div`
+export const ContainerStyles = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	align-items: center;
+	align-items: start;
 	margin: 3rem 3rem;
 	min-height: 50vh;
 `;
 
-export const Title = styled.h3`
+export const TitleStyles = styled.h3`
 	text-align: center;
 	margin-top: 2rem;
 `;
@@ -22,7 +22,7 @@ export const ErrorAlert = styled(Alert)`
 	margin: auto auto;
 `;
 
-export const StyledCard = styled(Card)`
+export const CardStyles = styled(Card)`
 	background-color: #f0f0f0;
 	border: 1px solid #bdbdbd;
 	width: 18rem;

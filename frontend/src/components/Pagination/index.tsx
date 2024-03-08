@@ -1,4 +1,4 @@
-import { PaginationStyle } from "./styled";
+import { PaginationStyle } from "./PaginationStyles";
 import { IPagination } from "../../interfaces/IPagination";
 import { Button } from "react-bootstrap/";
 

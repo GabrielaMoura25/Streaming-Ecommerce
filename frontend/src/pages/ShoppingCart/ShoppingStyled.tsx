@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const Container = styled.div`
+export const ContainerOneStyles = styled.div`
   display: flex;
   flex-wrap: wrap;
   min-height: 30rem;
 `;
 
-export const Container2 = styled.div`
+export const ContainerTwoStyles = styled.div`
   display: flex;
   flex-wrap: wrap;
   min-height: 30rem;
@@ -22,7 +22,7 @@ export const ContainerAlert = styled.div`
   border-radius: 5px;
 `;
 
-export const StyledLink = styled(Link)`
+export const LinkStyles = styled(Link)`
   text-decoration: none;
   cursor: pointer;
   color: white;

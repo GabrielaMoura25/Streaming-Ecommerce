@@ -1,17 +1,15 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
 import { BiSolidError } from "react-icons/bi";
 
 import PaymentForm from "../../components/BoxPayment";
 
-
 import {
-  Container,
-  Container2,
-  StyledLink,
+  ContainerOneStyles,
+  ContainerTwoStyles,
+  LinkStyles,
   ContainerAlert,
-} from "./ShoppingCartStyled";
+} from "./ShoppingStyled";
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY
@@ -30,23 +28,22 @@ export default function ShoppingCart() {
   return (
     <>
       {verifyToken() ? (
-        <Container>
-
+        <ContainerOneStyles>
           <Elements stripe={stripePromise}>
             <PaymentForm />
           </Elements>
-        </Container>
+        </ContainerOneStyles>
       ) : (
-        <Container2>
+        <ContainerTwoStyles>
           <ContainerAlert>
             <h3>
               Carrinho vázio <BiSolidError style={{ color: "#dfdb05" }} />
             </h3>
             <p>
-              Por favor, realize o <StyledLink to={"/login"}>login</StyledLink>
+              Por favor, realize o <LinkStyles to={"/login"}>login</LinkStyles>
             </p>
           </ContainerAlert>
-        </Container2>
+        </ContainerTwoStyles>
       )}
     </>
   );

@@ -13,11 +13,10 @@ interface ICreateUserForm {
 export const CreateUserServices = async (data: ICreateUserForm | string) => {
   try {
     const response = await api.post('http://localhost:8080/user', data);
-    console.log(data);
     return response;
   } catch (error) {
     console.log(error);
 
-    throw new Error('Erro, cadastro inválido');
+    throw new Error('Erro ao se cadastrar');
   }
 };

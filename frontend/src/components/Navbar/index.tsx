@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import { FaMagnifyingGlass, FaCartShopping, FaPlus } from "react-icons/fa6";
 
-// import { IJwtPayload } from "../../Interfaces/IJwtPayload";
+import { IJwtPayload } from "../../interfaces/IJwtPayload";
 
 import logo from "../../assets/images/Streaming.png";
 
@@ -30,16 +30,16 @@ export default function NavScrollExample() {
 	};
 
 	// Quero que seja mostrado para qualquer user a opções de add streamings
-	// const verifiyUserAdmin = () => {
-	// 	const token = localStorage.getItem("token");
-	// 	if (token) {
-	// 		const decodedToken: IJwtPayload = jwtDecode(token);
-	// 		if (decodedToken.role === "admin") {
-	// 			return true;
-	// 		}
-	// 	}
-	// 	return false;
-	// };
+	const verifiyUserAdmin = () => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			const decodedToken: IJwtPayload = jwtDecode(token);
+			if (decodedToken.role === "admin") {
+				return true;
+			}
+		}
+		return false;
+	};
 
 	const logoutUser = () => {
 		localStorage.removeItem("token");
@@ -59,14 +59,11 @@ export default function NavScrollExample() {
 						style={{ maxHeight: "100px" }}
 						navbarScroll
 					>
-						{/* {verifiyUserAdmin() && (
+						{verifiyUserAdmin() && (
 							<Nav.Link href="/streaming/register">
 								<FaPlus /> Adicionar Streaming
 							</Nav.Link>
-						)} */}
-            <Nav.Link href="/streaming/register">
-								<FaPlus /> Adicionar Streaming
-							</Nav.Link>
+						)}
 					</Nav>
 
 					<Nav

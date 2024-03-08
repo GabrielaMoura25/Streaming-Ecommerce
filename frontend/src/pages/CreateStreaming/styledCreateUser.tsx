@@ -2,14 +2,10 @@ import styled from "styled-components";
 import { Button, Alert } from "react-bootstrap";
 
 export const StyledContainer = styled.div`
-	font-family: "Amiko", sans-serif;
-	max-width: 30rem;
-	margin: 0 auto;
-	margin-top: 3rem;
-	padding: 20px;
-	border: 1px solid #ccc;
+		max-width: 30rem;
+	margin: 3rem auto;
+	padding: 2rem 1.25rem;
 	border-radius: 5px;
-	background-color: #fff;
 	color: #f5f5f5;
 	min-height: 50vh;
 `;
@@ -33,17 +29,21 @@ export const Description = styled.p`
 `;
 
 export const ErrorAlert = styled(Alert)`
-	background-color: #dc3545;
+	background-color: #e41749;
+	position: fixed;
+	z-index: 9999;
 	color: white;
-	text-align: center;
-	margin-top: 1.5rem;
+	right: 2rem;
+	top: 2rem;
 `;
 
 export const SuccessAlert = styled(Alert)`
 	background-color: #30a14e;
+	position: fixed;
+	z-index: 9999;
 	color: white;
-	text-align: center;
-	margin-top: 1.5rem;
+	right: 2rem;
+	top: 2rem;
 `;
 
 export const RegisterButton = styled(Button)`

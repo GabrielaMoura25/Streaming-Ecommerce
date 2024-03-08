@@ -7,8 +7,6 @@ export const StyledContainer = styled(Container)`
   width: 60%;
   display: inline-block;
   margin: 2rem auto 0 2rem;
-  /* background-color: #212529; */
-  /* padding: 1rem; */
   color: #fff;
   border-radius: 5px;
 `;

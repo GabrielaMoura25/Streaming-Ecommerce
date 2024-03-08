@@ -8,24 +8,23 @@ import {
   ErrorAlert,
   StyledCard,
   SuccessAlert,
-  Title,
+  TitleStyles,
 } from "./StyledAllCards";
 
 import { getCards } from "../../services/cardServices";
 import { postCarts } from "../../services/cartServices";
 
-import { ICreateStreaming } from "../../interfaces/ICreateStreaming";
+import { IStreaming } from "../../interfaces/IStreaming";
 import { IJwtPayload } from "../../interfaces/IJwtPayload";
 
 import noImage from "../../assets/images/no-image.jpg";
 import Pagination from "../Pagination";
-// import { BiInfoCircle } from "react-icons/bi";
-// import { HiInformationCircle } from "react-icons/hi";
 
 const limit: number = 12;
 
-const CardStreaming: React.FC<ICreateStreaming> = () => {
-  const [streaming, setStreaming] = useState<ICreateStreaming[]>([]);
+const CardStreaming: React.FC<IStreaming> = () => {
+  const [streaming, setStreaming] = useState<IStreaming[]>([]);
+
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -40,7 +39,6 @@ const CardStreaming: React.FC<ICreateStreaming> = () => {
         setStreaming(response.data);
         setInfo(response.data.length);
 
-        console.log(response.data.length);
       } catch (error: any) {
         handleError(error.message);
       } finally {
@@ -68,7 +66,7 @@ const CardStreaming: React.FC<ICreateStreaming> = () => {
     setSuccessMessage("");
   };
 
-  const addCardToCart = async (dataStreaming: ICreateStreaming) => {
+  const addCardToCart = async (dataStreaming: IStreaming) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("Por favor, realize o login!");
@@ -112,7 +110,7 @@ const CardStreaming: React.FC<ICreateStreaming> = () => {
 
   return (
     <>
-      <Title>Ofertas feitas para você</Title>
+      <TitleStyles>Ofertas feitas para você</TitleStyles>
 
       <StyledCards>
         {loading && renderLoading()}
@@ -147,6 +145,7 @@ const CardStreaming: React.FC<ICreateStreaming> = () => {
           </StyledCard>
         ))}
       </StyledCards>
+      
       {info && (
         <Pagination
           limit={limit}

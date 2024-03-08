@@ -1,10 +1,10 @@
 import { Card, Button } from "react-bootstrap/";
 
-import { ICart } from "../../interfaces/ICart";
-
 import { StyledContainer } from "./BoxStyled";
 
 import { removerCart } from "../../services/cartServices";
+
+import { ICart } from "../../interfaces/ICart";
 
 interface Props {
   streamings: ICart[];

@@ -1,6 +1,6 @@
 import { api } from './api';
 
-import { ICreateStreaming } from '../interfaces/ICreateStreaming'
+import { ICreateStreaming } from '../interfaces/IStreaming'
 import { ICart } from '../interfaces/ICart';
 
 export const postCarts = async (dataCart: ICreateStreaming) => {

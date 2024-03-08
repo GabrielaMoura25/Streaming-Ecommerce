@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Alert, Card } from "react-bootstrap/";
 
-export const Title = styled.h2`
+export const TitleStyles = styled.h2`
 	text-align: center;
 	margin-top: 1.5rem;
 `;
@@ -10,7 +10,7 @@ export const StyledCards = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	align-items: center;
+	align-items: start;
 	margin: 3rem 3rem;
 	min-height: 50vh;
 `;
