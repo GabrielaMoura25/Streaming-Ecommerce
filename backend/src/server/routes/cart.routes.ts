@@ -1,13 +1,20 @@
 import { Router } from 'express';
 
-import { createCart, deleteCartById, getAllCarts, updateCartById } from '../controllers/Cart';
+import {
+  createCart,
+  deleteCartById,
+  getAllCarts,
+  updateCartById
+} from '../controllers/Cart';
+import stripePayments from '../controllers/Stripe';
 
 const router: Router = Router();
 
-router.route('/').post(createCart).get(getAllCarts);
+router.post('/payment', stripePayments);
+router.get('/:userId', getAllCarts);
+router.post('/', createCart);
+router.put('/:id', updateCartById);
+router.delete('/:id', deleteCartById);
 
-router.route('/:id')
-  .put(updateCartById)
-  .delete(deleteCartById);
 
 export default router;

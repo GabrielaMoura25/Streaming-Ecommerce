@@ -18,8 +18,8 @@ router.use('/streaming', streamingRoutes);
 router.use('/cart', cartRoutes);
 router.use('/download-image', imageRoutes);
 
-router.use('/', (_: Request, res: Response) => {
-  res.status(StatusCodes.OK).json({ message: 'Hello world!' });
-});
+// router.use('/', (_: Request, res: Response) => {
+//   res.status(StatusCodes.OK).json({ message: 'Hello world!' });
+// });
 
 export default router;

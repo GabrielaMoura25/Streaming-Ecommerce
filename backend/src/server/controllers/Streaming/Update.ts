@@ -20,7 +20,7 @@ export const updateStreamingById = async (req: Request, res: Response) => {
         message: 'ID not provided'
       });
     }
-    
+
     if (!dataStreaming) {
       return res.status(StatusCodes.BAD_REQUEST).json({
         message: 'Data not provided'
@@ -35,8 +35,8 @@ export const updateStreamingById = async (req: Request, res: Response) => {
       });
     }
 
-    if(streamingExists.photo) {
-      const imagePath: string = path.join(__dirname, `../../images/${streamingExists.photo}`);
+    if (streamingExists.photo) {
+      const imagePath: string = path.join(__dirname, `../../upload/images/${streamingExists.photo}`);
       try {
         await fs.access(imagePath);
         await fs.unlink(imagePath);

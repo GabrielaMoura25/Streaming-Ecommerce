@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
-import { FaMagnifyingGlass, FaCartShopping } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaCartShopping, FaPlus } from "react-icons/fa6";
+
+import { IJwtPayload } from "../../interfaces/IJwtPayload";
 
 import logo from "../../assets/images/Streaming.png";
 
@@ -26,6 +29,18 @@ export default function NavScrollExample() {
 		}
 	};
 
+	// Quero que seja mostrado para qualquer user a opções de add streamings
+	const verifiyUserAdmin = () => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			const decodedToken: IJwtPayload = jwtDecode(token);
+			if (decodedToken.role === "admin") {
+				return true;
+			}
+		}
+		return false;
+	};
+
 	const logoutUser = () => {
 		localStorage.removeItem("token");
 		window.location.href = "/";
@@ -44,26 +59,33 @@ export default function NavScrollExample() {
 						style={{ maxHeight: "100px" }}
 						navbarScroll
 					>
-						<Nav.Link href="/user/register">Cadastra-se</Nav.Link>
-						<Nav.Link href="/streaming/register">Adicionar produto</Nav.Link>
+						{verifiyUserAdmin() && (
+							<Nav.Link href="/streaming/register">
+								<FaPlus /> Adicionar Streaming
+							</Nav.Link>
+						)}
+					</Nav>
+
+					<Nav
+						className="justify-content-end"
+						style={{ maxHeight: "100px" }}
+						navbarScroll
+					>
+						<Nav.Link href="/shopping-cart">
+							<FaCartShopping />
+						</Nav.Link>
+
+						{tokenExists() ? (
+							<Nav.Link onClick={() => logoutUser()}>Logout</Nav.Link>
+						) : (
+							<>
+								<Nav.Link href="/login">Login</Nav.Link>
+								<Nav.Link href="/user/register">Sign up</Nav.Link>
+							</>
+						)}
 					</Nav>
 
 					<Form className="d-flex" onSubmit={handleSubmit}>
-						<Nav
-							className="me-auto my-2 my-lg-0"
-							style={{ maxHeight: "100px" }}
-							navbarScroll
-						>
-							<Nav.Link href="/shopping-cart">
-								<FaCartShopping />
-							</Nav.Link>
-
-							{tokenExists() ? (
-								<Nav.Link onClick={() => logoutUser()}>Logout</Nav.Link>
-							) : (
-								<Nav.Link href="/login">Login</Nav.Link>
-							)}
-						</Nav>
 						<Form.Control
 							type="search"
 							placeholder="Pesquisar"

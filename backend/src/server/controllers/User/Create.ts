@@ -10,6 +10,8 @@ import User from '../../models/User';
 export const createUser = async (req: Request, res: Response) => {
   const dataUser: IUser = req.body;
 
+  console.log(dataUser);
+
   if (!dataUser) {
     res.status(StatusCodes.BAD_REQUEST).json({
       message: 'Data not found'

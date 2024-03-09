@@ -1,14 +1,8 @@
 import { api } from './api';
 
-interface ICreateStreaming {
-  title: string;
-  description: string;
-  value: string;
-  photo: File;
-  userId: string;
-}
+import { IStreaming } from '../interfaces/IStreaming';
 
-export const RegisterStreaming = async (data: ICreateStreaming, userToken: string) => {
+export const RegisterStreaming = async (data: IStreaming, userToken: string) => {
   try {
     const formData = new FormData();
     formData.append('title', data.title);
@@ -28,6 +22,6 @@ export const RegisterStreaming = async (data: ICreateStreaming, userToken: strin
     return response;
   } catch (error) {
     console.log(error);
-    throw new Error('Erro, cadastro inválido');
+    throw new Error('Erro ao cadastrar streaming');
   }
 };

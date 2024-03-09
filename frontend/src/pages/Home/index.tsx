@@ -7,7 +7,7 @@ function Home() {
 		<>
 			<Carrossel />
 			<ImagePromotion />
-			<CardStreaming id={""} title={""} description={""} value={0} photo={""} />
+			<CardStreaming />
 		</>
 	);
 }

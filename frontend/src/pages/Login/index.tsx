@@ -1,129 +1,133 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 import {
-	Title,
-	StyledContainer,
-	Description,
-	ErrorAlert,
-	SuccessAlert,
-	StyledLink,
+  TitleStyles,
+  ContainerStyles,
+  DescriptionStyles,
+  ErrorAlert,
+  SuccessAlert,
+  LinkStyles,
 } from "./LoginStyled";
 
 import { login } from "../../services/loginService";
-
-interface ILoginForm {
-	email: string;
-	password: string;
-}
+import { ILogin } from "../../interfaces/ILogin";
 
 const Login: React.FC = () => {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	const [errorMessage, setErrorMessage] = useState("");
-	const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-	const [formData, setFormData] = useState<ILoginForm>({
-		email: "",
-		password: "",
-	});
+  const [formData, setFormData] = useState<ILogin>({
+    email: "",
+    password: "",
+  });
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
-		setFormData((prevState) => ({
-			...prevState,
-			[name]: value,
-		}));
-	};
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-		try {
-			if (!formData.email || !formData.password) {
-				throw new Error("Por favor, preencha todos os campos.");
-			}
+    try {
+      if (!formData.email || !formData.password) {
+        setErrorMessage("Por favor, preencha todos os campos.");
+      }
 
-			await login(formData);
+      await login(formData);
 
-			setTimeout(() => {
-				setSuccessMessage("");
-				navigate("/");
-			}, 2000);
+      handleSuccess("Usuário logado com sucesso");
+    } catch (error: any) {
+      handleError(error.message);
+    }
+  };
 
-			setSuccessMessage("Usuário logado com sucesso!");
-		} catch (error: any) {
-			setTimeout(() => {
-				setErrorMessage("");
-			}, 2000);
-			setErrorMessage(error.message);
-		}
-	};
-	return (
-		<StyledContainer className="card text-bg-dark">
-			<StyledLink to="/">
-				<FaArrowLeftLong />
-			</StyledLink>
+  const handleError = (message: string) => {
+    setErrorMessage(message);
+    setTimeout(clearError, 2000);
+  };
 
-			<Form onSubmit={handleSubmit}>
-				<Title className="title-primary">Login</Title>
+  const clearError = () => {
+    setErrorMessage("");
+  };
 
-				<Form.Group className="mb-3" controlId="formBasicEmail">
-					<Form.Label>E-mail</Form.Label>
-					<Form.Control
-						type="email"
-						placeholder="...@gmail.com"
-						name="email"
-						onChange={handleChange}
-					/>
-				</Form.Group>
+  const renderError = () => (
+    <ErrorAlert key="danger" variant="danger">
+      <Spinner animation="grow" size="sm" /> {errorMessage}
+    </ErrorAlert>
+  );
 
-				<Form.Group className="mb-3" controlId="formBasicPassword">
-					<Form.Label>Senha</Form.Label>
-					<Form.Control
-						type="password"
-						placeholder="***"
-						name="password"
-						onChange={handleChange}
-					/>
-				</Form.Group>
+  const handleSuccess = (message: string) => {
+    setSuccessMessage(message);
+    setTimeout(clearSuccess, 2000);
+  };
 
-				<Button
-					style={{ width: "100%", marginTop: "1rem" }}
-					variant="primary"
-					type="submit"
-				>
-					Login
-				</Button>
+  const clearSuccess = () => {
+    setSuccessMessage("");
+		navigate('/');
+  };
 
-				<Description>
-					Não possui conta? <StyledLink to="/">Crie um cadastro</StyledLink>
-				</Description>
+  const renderSuccess = () => (
+    <SuccessAlert key="danger" variant="success">
+      <Spinner animation="grow" size="sm" /> {successMessage}
+    </SuccessAlert>
+  );
 
-				{errorMessage && (
-					<ErrorAlert
-						style={{ textAlign: "center" }}
-						key="danger"
-						variant="danger"
-					>
-						{errorMessage}
-					</ErrorAlert>
-				)}
+  return (
+    <ContainerStyles className="card text-bg-dark">
+      {errorMessage && renderError()}
+      {successMessage && renderSuccess()}
 
-				{successMessage && (
-					<SuccessAlert
-						style={{ textAlign: "center" }}
-						key="success"
-						variant="success"
-					>
-						{successMessage}
-					</SuccessAlert>
-				)}
-			</Form>
-		</StyledContainer>
-	);
+      <LinkStyles to="/">
+        <FaArrowLeftLong />
+      </LinkStyles>
+
+      <Form onSubmit={handleSubmit}>
+        <TitleStyles className="title-primary">Login</TitleStyles>
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>E-mail</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="...@gmail.com"
+            name="email"
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Senha</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="***"
+            name="password"
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Button
+          style={{ width: "100%", marginTop: "1rem" }}
+          variant="primary"
+          type="submit"
+        >
+          Login
+        </Button>
+
+        <DescriptionStyles>
+          Não possui conta?{" "}
+          <LinkStyles to="/user/register">Crie um cadastro</LinkStyles>
+        </DescriptionStyles>
+      </Form>
+    </ContainerStyles>
+  );
 };
 
 export default Login;
