@@ -29,7 +29,7 @@ const CreateUser: React.FC = () => {
 		dueDate: new Date(),
 		email: "",
 		password: "",
-		role: "",
+		role: "user",
 	});
 
 	const handleChange = (e: any) => {
@@ -132,6 +132,7 @@ const CreateUser: React.FC = () => {
 						onChange={handleChange}
 						aria-label="Select gender"
 					>
+						<option value="">Selecione</option>
 						<option value="hc">Masculino</option>
 						<option value="mc">Feminino</option>
 						<option value="o">Outros</option>
@@ -175,7 +176,8 @@ const CreateUser: React.FC = () => {
 						onChange={handleChange}
 						aria-label="Select gender"
 					>
-						<option value="client">Cliente</option>
+						<option value="">Selecionse</option>
+						<option value="user">Cliente</option>
 					</Form.Select>
 				</Form.Group>
 
