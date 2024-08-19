@@ -1,119 +1,130 @@
-# Streaming TV
+# The New York Times API
 
-#### A aplicação Streaming TV é um site fictício desenvolvido durante a formação back-end da Ada. O objetivo do projeto é colocar em prática as habilidades desenvolvidas durante o 5° módulo (Node.js com Express).
-![Logo](https://live.staticflickr.com/65535/53543791400_1048840b2f_o.png)
+Projeto desenvolvido para a avaliação das sprints 2 e 3 do programa de bolsas Compass UOL para formação em machine learning na AWS.
 
----
+O objetivo do projeto é criar um sistema em Node.js que consome uma API pública externa e realiza o deploy na AWS dentro de um contêiner Docker.
 
-> ⚙ Funcionalidades
+A API escolhida foi a do The New York Times, onde o sistema permite buscar as notícias mais populares da semana, além de realizar pesquisas utilizando filtros.
 
-- CRUDs das entidades User, Streaming e Card
-- Validação e autenticação de usuários
-- Upload e download de imagens
-- Sistema de login
-- Carrinho de compras
-- Rotas públicas e privadas
+![interface](https://live.staticflickr.com/65535/53930648062_34e371f9c7_h.jpg)
 
----
+## Índices
 
-> 🚀 Stack utilizada
+1. [Tecnologias utilizadas](#tecnologias-utilizadas)
+2. [Funcionalidades do Sistema](#funcionalidades-do-sistema)
+3. [Desenvolvimento do Projeto](#desenvolvimento-do-projeto)
+4. [Dificuldades Conhecidas](#dificuldades-conhecidas)
+5. [Instalação e Execução](#instalação-e-execução)
+6. [Deploy](#deploy)
+7. [Equipe](#equipe)
 
-**Back-end:**
-`bcrypt`, `cors`, `dotenv`, `express`, `http-status-codes`, `jsonwebtoken`, `multer`, `sequelize`, `sqlite3`, `nodemon`, `prettier`, `ts-node`, `typescript`, `eslint`, `yup`.
+## Tecnologias utilizadas
 
-**Front-end:**
-`axios`, `bootstrap`, `react`, `react-bootstrap`, `react-dom`, `react-icons`, `react-router-dom`, `styled-components`, `eslint`, `typescript`, `vite`.
+| Stack            | Tecnologias                             | 
+| :--------------- | :-------------------------------------- |
+| Back-end         | `Node.js`, `JavaScript`, `Express.js`   |
+| Front-end        | `HTML`, `CSS`, `JavaScript`, `Bootstrap`| 
+| Infraestrutura e DevOps | `AWS`, `Docker`                        | 
 
----
+## Funcionalidades do Sistema
 
-> 🔧 Instalação
+1. A tela principal da aplicação exibe de forma dinâmica as notícias mais importantes da semana na seção *News of the week*.
+![interface](https://live.staticflickr.com/65535/53932267774_4fa45362c2_h.jpg)
 
-1. Clone o projeto
+2. Acima da seção *News of the week*, há uma área de pesquisa com filtros, onde é possível filtrar por data, ordenar ou pesquisar sem filtros.
+![interface](https://live.staticflickr.com/65535/53932382770_fd533b8406_h.jpg)
 
-    ```bash
-    git clone https://github.com/GabrielaMoura25/Streaming-Ecommerce.git
-    ```
+## Desenvolvimento do Projeto
 
-2. Entre no diretório do projeto
+### Organização da equipe
+A equipe se organizou utilizando a ferramenta `Trello`, seguindo a metodologia ágil `SCRUM`. Durante as reuniões, as tarefas eram criadas e distribuídas de forma dinâmica, onde cada membro escolhia sua própria tarefa. Após a conclusão, o membro fazia o *push* para o GitHub utilizando `Commits semânticos` para manter a organização do repositório.
 
-    ```bash
-    cd Streaming-Ecommerce
-    ```
+[Link para o quadro da equipe no Trello](https://trello.com/invite/b/66a8dac8d51e1e89f636352d/ATTIe40537a430a2fbf44538e3dae1622ad0C46474B5/compass-pb-aws-2024-julho-a-sprints-2-3-pb-aws-julho-a)
 
-3. Acesse a pasta backend
+### Desenvolvimento da camada Back-end
+O Back-end foi desenvolvido com base na `Layered Architecture` (Arquitetura em Camadas) para manter uma organização clara e separar as responsabilidades. As camadas têm os seguintes papéis:
 
-    ```bash
-    cd backend
-    ```
+- **Controller:** Responsável por lidar com as requisições **HTTP**.
+- **Service:** Responsável pela **lógica de negócios**, consulta e retorno de dados ao controller.
+- **Validate:** Responsável por validar os **dados de entrada** para o service.
+- **CustomError:** Criação de **erros personalizados** para lidar com respostas HTTP.
+- **Routes:** Responsável pelo controle das **rotas de acesso**.
+- **server.js:** Arquivo responsável por **iniciar, comunicar e executar** a aplicação.
 
-4. Verifique se o Yarn está instalado
+[Link para CustomError](https://javascript.info/custom-errors)
 
-    ```bash
-    yarn --version
-    ```
+### Desenvolvimento da camada Front-end
+O desenvolvimento do Front-end foi baseado em uma arquitetura simples em `Vanilla`. A estrutura do Front-end está dividida em três partes principais: **index.html**, **css**, e **js**.
 
-5. Se não estiver instalado, execute o comando.
+- **index.html:** Responsável por **renderizar a página inicial** da aplicação com `Bootstrap`.
+- **js:** Contém as seguintes pastas:
+    - **articlePopular:** Envia requisições à API local e popula os cards com as notícias populares.
+    - **articleSearch:** Também envia requisições à API local e preenche os cards com os artigos correspondentes.
+    - **config:** Centraliza informações úteis que podem ser utilizadas no Front-end.
+    - **main.js:** Arquivo responsável por **iniciar as requisições** para exibir as notícias da semana nos cards.
+- **css:** Responsável pela **estilização da página**.
+- **assets:** Contém todos os **arquivos estáticos** da aplicação.
 
-    ```bash
-    npm install --global yarn
-    ```
+### Arquivos de configuração
+Para padronizar o projeto, utilizamos o `eslint` configurado com `prettier`. Também utilizamos `Dockerfile` e `docker-compose` para containerizar a aplicação. Além disso, criamos uma pasta `.vscode` para que todos os membros da equipe tivessem indicações de extensões adequadas para o desenvolvimento do projeto.
 
-6. Instale as dependências
+## Dificuldades Conhecidas
 
-    ```bash
-    yarn install
-    ```
+- Dificuldade em manter as contribuições organizadas, evitando conflitos no GitHub.
+- Falta de conhecimento prático em determinadas tecnologias, como Docker e AWS.
+- Dificuldade em conciliar as aulas de estágio com o desenvolvimento do projeto.
 
-7. Crie um arquivo `.env` e configure as variáveis
+## Instalação e Execução
 
-    ```plaintext
-    Antes de rodar o projeto, é necessário fazer uma cópia do arquivo '.example.env' e renomeá-lo para '.env'. Após fazer isso, adicione na variável 'PORT' a porta que irá rodar o projeto e em 'SECRET', adicione a sua chave secreta.
-    ```
+1. Abra o terminal.
+2. Acesse o diretório onde deseja clonar o projeto.
+3. Execute o seguinte comando no terminal:
 
-8. Execute o projeto
+```bash
+    git clone https://github.com/Compass-pb-aws-2024-JULHO-A/sprints-2-3-pb-aws-julho-a.git
+```
 
-    ```bash
-    yarn run dev
-    ```
+4. Acesse a pasta clonada:
 
-9. Após realizar a instalação das dependências do projeto no lado back-end, é necessário abrir uma nova janela/aba do terminal e acessar a pasta frontend. Após entrar na pasta frontend, execute os seguintes comandos:
+```bash
+    cd sprints-2-3-pb-aws-julho-a
+```
 
-    - Instale as dependências
+**Executando em ambiente de desenvolvimento**
 
-    ```bash
+5. Instale as dependências:
+
+```bash
     npm install
-    ```
+```
 
-    - Execute o projeto
+6. Inicie a aplicação:
 
-    ```bash
+```bash
     npm run dev
-    ```
+```
 
-10. Acesse o endereço
+7. Abra o arquivo `index.html`. Uma forma de fazer isso é utilizando a extensão [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) ou acessando o link:
 
-    ```plaintext
-    http://localhost:5173/
-    ```
+```bash
+    http://127.0.0.1:5500/public/index.html
+```
 
----
+**Executando com Docker**
 
-> 🏆 Equipe
+8. Comando para fazer o build e iniciar os contêineres com Docker Compose:
 
+```bash
+    docker-compose up --build
+```
+
+## Deploy
+
+[Link para acessar o deploy da aplicação](http://127.0.0.1:5500/public/index.html)
+
+## Equipe
 <table align="center">
   <tr align="center">
-    <td>
-      <a href="https://github.com/GabrielaMoura25">
-        <img src="https://avatars.githubusercontent.com/u/104806754?v=4" width=100 />
-        <p>Gabriela <br/>Moura</p>
-      </a>
-    </td>
-    <td>
-      <a href="https://github.com/christianebs">
-        <img src="https://avatars.githubusercontent.com/u/108686840?v=4" width=100 />
-        <p>Christiane <br/>Barbosa</p>
-      </a>
-    </td>
     <td>
       <a href="https://github.com/RubensLFerreira">
         <img src="https://avatars.githubusercontent.com/RubensLFerreira" width=100 />
@@ -121,15 +132,21 @@
       </a>
     </td>
     <td>
-      <a href="https://github.com/JessanyKaline">
-        <img src="https://avatars.githubusercontent.com/u/108687524?v=4" width=100 />
-        <p>Jessany <br/>Kaline</p>
+      <a href="https://github.com/Caiqueferlima">
+        <img src="https://avatars.githubusercontent.com/u/130234796?v=4" width=100 />
+        <p>Caíque <br/>Fernandes</p>
       </a>
     </td>
     <td>
-      <a href="https://github.com/LeidyOlinto">
-        <img src="https://avatars.githubusercontent.com/u/100310458?v=4" width=100 />
-        <p>Leidy <br/>Olinto</p>
+      <a href="https://github.com/devrodrigocsoares">
+        <img src="https://avatars.githubusercontent.com/u/63052661?v=4" width=100 />
+        <p>Rodrigo <br/>Cadeira</p>
+      </a>
+    </td>
+      <td>
+      <a href="https://github.com/Ivo-Aragao">
+        <img src="https://avatars.githubusercontent.com/u/105293872?v=4" width=100 />
+        <p>Ivo <br/>Aragão</p>
       </a>
     </td>
   </tr>
